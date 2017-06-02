@@ -1,0 +1,15 @@
+[user]
+	email = tobiasschaffner87@outlook.com
+	name = Tobias Schaffner
+[alias]
+	co = checkout
+	st = status --short
+	up = pull --rebase
+[core]
+	autocrlf = input
+	safecrlf = false
+	editor = vim
+[push]
+	default = current
+[credential]
+	helper = store
