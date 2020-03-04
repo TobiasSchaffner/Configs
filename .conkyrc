@@ -1,7 +1,7 @@
 conky.config = {
 	use_xft= true,
 	xftalpha= .1,
-	update_interval= 1,
+	update_interval= 2,
 	total_run_times= 0,
 
 	background= true,
@@ -53,27 +53,30 @@ ${voffset 5}
 ${alignr}${font Ubuntu:style=Medium:pixelsize=26}${time %A %d %B %Y}${font}
 
 ${voffset 50}
-${font FontAwesome:style=Solid:size=10}${font}${goto 40}${if_match "${addr enp0s31f6}"!="No Address"}Eth${alignr}${addr enp0s31f6}${endif}${if_match "${addr wlp4s0}"!="No Address"}WiFi${alignr}${addr wlp4s0}${endif}
+${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}${if_match "${addr enp0s31f6}"!="No Address"} Eth${alignr}${addr enp0s31f6}${endif}${if_match "${addr wlp4s0}"!="No Address"} WiFi${alignr}${addr wlp4s0}${endif}
 ${hr}
-${font FontAwesome:style=Solid:size=10}${font} ${alignr}${exec curl ipinfo.io/ip}
+${font Font Awesome 5 Free:style=Solid:size=10}${font} ${alignr}${exec curl ipinfo.io/ip}
 ${if_match "${addr enp3s0}"!="No Address"}
-${color1}${font FontAwesome:style=Solid:size=10}${font}${goto 40}download${alignr}${downspeedf enp3s0}k/s
+${color1}${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}download${alignr}${downspeedf enp3s0}k/s
 ${hr}
-${font FontAwesome:style=Solid:size=10}${font}${goto 40}upload${alignr}${upspeedf enp3s0}k/s
+${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}upload${alignr}${upspeedf enp3s0}k/s
 ${endif}
 ${if_match "${addr wlp4s0}"!="No Address"}
-${color1}${font FontAwesome:style=Solid:size=10}${font}${goto 40}download${alignr}${downspeedf wlp4s0}k/s
+${color1}${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}download${alignr}${downspeedf wlp4s0}k/s
 ${hr}
-${font FontAwesome:style=Solid:size=10}${font}${goto 40}upload${alignr}${upspeedf wlp4s0}k/s
+${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}upload${alignr}${upspeedf wlp4s0}k/s
 ${endif}
 ${color1}
-${font FontAwesome:style=Solid:size=10}${font}${goto 40}cpu ${alignr}${cpu}%
+${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40} cpu ${alignr}${cpu}%
 ${hr}
-${font FontAwesome:style=Solid:size=10}${font}${goto 40}mem ${alignr}${mem}
+${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}mem ${alignr}${exec awk </proc/meminfo -F': *' '
+{ v[$1] = $2+0 }
+END{ print v["MemTotal"]-v["MemFree"]-(v["Cached"]-v["Shmem"]+v["Buffers"]+v["SReclaimable"])
+}'}
 ${hr}
-${goto 10}${font FontAwesome:style=Solid:size=10}${font}${goto 40}temp ${alignr}${hwmon 0 temp 1}°
+${goto 10}${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}temp ${alignr}${exec sensors | grep 'temp1' | grep 'crit' | cut -c16-19}°
 ${hr}
-${font FontAwesome:style=Solid:size=10}${font}${goto 40}fan ${alignr}${hwmon 3 fan 1} rpm
+${font Font Awesome 5 Free:style=Solid:size=10}${font}${goto 40}fan ${alignr}${exec sensors | grep 'fan1' | cut -c12-17} rpm
 ${voffset 20}
 Name ${goto 250}Cpu${alignr}Mem${color}
 ${hr}
